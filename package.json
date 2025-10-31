@@ -1,0 +1,52 @@
+{
+  "name": "express-observability-starter",
+  "version": "1.0.0",
+  "description": "Projeto Express com observabilidade completa usando OpenTelemetry",
+  "main": "app.js",
+  "scripts": {
+    "start": "node -r ./tracing.js app.js",
+    "dev": "node -r ./tracing.js app.js",
+    "start:dev": "nodemon -r ./tracing.js app.js",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "test": "curl http://localhost:3001/health",
+    "load-test": "node load-test.js",
+    "load-test:light": "node -e \"const lt = require('./load-test'); lt.CONFIG = {duration: 60, concurrency: 5, interval: 1000}; lt.main()\"",
+    "setup": "./setup-observability.sh",
+    "setup:auto": "./setup-observability.sh",
+    "stop": "./stop-observability.sh",
+    "observability:start": "./setup-observability.sh",
+    "observability:stop": "./stop-observability.sh"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/api-logs": "^0.53.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.52.1",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.53.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.53.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.53.0",
+    "@opentelemetry/resources": "^1.26.0",
+    "@opentelemetry/sdk-logs": "^0.53.0",
+    "@opentelemetry/sdk-metrics": "^1.26.0",
+    "@opentelemetry/sdk-node": "^0.53.0",
+    "@opentelemetry/semantic-conventions": "^1.27.0",
+    "axios": "^1.5.0",
+    "express": "^4.18.2",
+    "pino": "^8.15.0",
+    "pino-http": "^8.3.3",
+    "prom-client": "^15.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "express",
+    "opentelemetry",
+    "observability",
+    "tracing",
+    "metrics",
+    "logs"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT"
+}
